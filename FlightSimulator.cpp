@@ -59,7 +59,7 @@ int FlightSimulator::Register( String outputs[] )
   return String( port ).toInt();
 }
 
-void FlightSimulator::ReadFSData( DynamicJsonDocument *SimulatorData)
+void FlightSimulator::Read( DynamicJsonDocument *SimulatorData)
 {
   DeserializationError error = deserializeJson( *SimulatorData, *xWifiClient);
  

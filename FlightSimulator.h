@@ -17,7 +17,7 @@
 
             FlightSimulator(Client& aClient, const char* aServerName, uint16_t aServerPort = kHttpPort , const char* aName = "Arduino");
             int Register( String outputs[] );
-            void ReadFSData( DynamicJsonDocument *SimulatorData );
+            void Read( DynamicJsonDocument *SimulatorData );
         
         private:
             void FlightSimulator::BuildPostData(String outputs[]);
