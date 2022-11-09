@@ -65,4 +65,10 @@ void FlightSimulator::Read( DynamicJsonDocument *SimulatorData)
  
 }
 
+void FlightSimulator::Write(DynamicJsonDocument* SimulatorData)
+{
+    DeserializationError error = serializeJson(*SimulatorData, *xWifiClient);
+
+}
+
 
