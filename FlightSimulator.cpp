@@ -1,12 +1,10 @@
 #include "FlightSimulator.h"
 
 String contentType = "application/json";
-String postData ;
 String url = "/api/simulator/register";
 
 char *boardName ;
 
-StaticJsonDocument<1000> json_data;
 StaticJsonDocument<1000> response_data;
 
 Client* xWifiClient;
@@ -18,8 +16,11 @@ FlightSimulator::FlightSimulator(Client& aClient, const char* aServerName, uint1
   boardName =  aName ;
 }
 
-void FlightSimulator::BuildPostData( String outputs[] )
+String FlightSimulator::BuildPostData( String outputs[] )
 {
+  String postData;
+  DynamicJsonDocument json_data( 1024 );
+
   json_data["name"]       =  boardName;
   json_data["os_system"]  = "Arduino";
   json_data["os_version"] =  VERSION;
@@ -30,11 +31,14 @@ void FlightSimulator::BuildPostData( String outputs[] )
     data.add( outputs[i] ) ;
   }
   serializeJson( json_data , postData );
+  return postData;
 }
 
 int FlightSimulator::Register( String outputs[] )
 {
-  BuildPostData( outputs );
+  String postData = BuildPostData( outputs );
+
+  Serial.println(postData);
 
   post( url, contentType, postData);
 
@@ -51,6 +55,7 @@ int FlightSimulator::Register( String outputs[] )
   if (error) {
     Serial.print(F("deserializeJson() failed: "));
     Serial.println(error.f_str());
+    flush();
     return -1;
   }
 

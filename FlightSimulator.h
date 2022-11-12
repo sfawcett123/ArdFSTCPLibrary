@@ -20,7 +20,7 @@
             void Read( DynamicJsonDocument *SimulatorData );
             void Write(DynamicJsonDocument* SimulatorData);
         private:
-            void FlightSimulator::BuildPostData(String outputs[]);
+            String FlightSimulator::BuildPostData(String outputs[]);
     };
 
 #endif
