@@ -6,8 +6,8 @@ String url = "/api/simulator/register";
 
 char *boardName ;
 
-StaticJsonDocument<100> json_data;
-StaticJsonDocument<100> response_data;
+StaticJsonDocument<1000> json_data;
+StaticJsonDocument<1000> response_data;
 
 Client* xWifiClient;
 
@@ -51,7 +51,7 @@ int FlightSimulator::Register( String outputs[] )
   if (error) {
     Serial.print(F("deserializeJson() failed: "));
     Serial.println(error.f_str());
-    return;
+    return -1;
   }
 
   char* port = response_data["port"];
