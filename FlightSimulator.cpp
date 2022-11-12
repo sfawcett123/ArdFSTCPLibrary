@@ -38,24 +38,18 @@ int FlightSimulator::Register( String outputs[] )
 {
   String postData = BuildPostData( outputs );
 
-  Serial.println(postData);
-
   post( url, contentType, postData);
 
   int statusCode = responseStatusCode();
   String response = responseBody();
 
-  Serial.print("Status code: ");
-  Serial.println(statusCode);
-  Serial.print("Response: ");
-  Serial.println(response);
+  if (statusCode < 0) return statusCode;
 
   DeserializationError error = deserializeJson(response_data, response);
 
   if (error) {
     Serial.print(F("deserializeJson() failed: "));
     Serial.println(error.f_str());
-    flush();
     return -1;
   }
 
