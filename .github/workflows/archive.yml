@@ -19,6 +19,12 @@ jobs:
         filename: 'ArdFSTCPLibrary.zip'
         exclusions: '*.git* .editorconfig'
 
+    - uses: rickstaa/action-create-tag@v2
+      with:
+        tag: "latest"
+        message: "Latest release"
+        force_push_tag: true
+        
     - name: Upload Release
       uses: ncipollo/release-action@v2
       with:
