@@ -13,6 +13,10 @@ jobs:
     
     - uses: actions/checkout@master
     
+    - name: Set outputs
+      id: vars
+      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      
     - name: Archive Release
       uses: thedoctor0/zip-release@main
       with:
@@ -30,3 +34,4 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "ArdFSTCPLibrary.zip"
+        commit: ${{ steps.vars.outputs.sha_short }}
