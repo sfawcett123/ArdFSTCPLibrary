@@ -1,5 +1,6 @@
 name: Create Archive
 on: [push]
+  tag
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,13 +16,8 @@ jobs:
         type: 'zip'
         filename: 'ArdFSTCPLibrary.zip'
         exclusions: '*.git* .editorconfig'
-        
-    - uses: rickstaa/action-create-tag@v1
-      with:
-        tag: "latest"
-        message: "Latest release"
-        
+
     - name: Upload Release
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@v2
       with:
         artifacts: "ArdFSTCPLibrary.zip"
