@@ -35,4 +35,4 @@ jobs:
       with:
         artifacts: "ArdFSTCPLibrary.zip"
         commit: ${{ steps.vars.outputs.sha_short }}
-        tag: ${{ steps.vars.outputs.sha_short }}
+        tag: "latest"
