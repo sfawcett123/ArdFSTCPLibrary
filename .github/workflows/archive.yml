@@ -11,11 +11,14 @@ jobs:
       contents: write
     steps:
     
-    - uses: actions/checkout@master
-    
-    - name: Set outputs
-      id: vars
-      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        
+    - uses: rickstaa/action-get-semver@v1
+      id: get_semver
+      with:
+        bump_level: "minor"
       
     - name: Archive Release
       uses: thedoctor0/zip-release@main
@@ -26,7 +29,7 @@ jobs:
 
     - uses: rickstaa/action-create-tag@v1
       with:
-        tag: "latest"
+        tag: ${{ steps.get_semver.outputs.next_version }}
         message: "Latest release"
         force_push_tag: true
         
@@ -34,4 +37,4 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "ArdFSTCPLibrary.zip"
-        tag: "latest"
+        tag: ${{ steps.get_semver.outputs.next_version }}
