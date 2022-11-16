@@ -20,7 +20,7 @@ jobs:
         filename: 'ArdFSTCPLibrary.zip'
         exclusions: '*.git* .editorconfig'
 
-    - uses: rickstaa/action-create-tag@v2
+    - uses: rickstaa/action-create-tag@v1
       with:
         tag: "latest"
         message: "Latest release"
