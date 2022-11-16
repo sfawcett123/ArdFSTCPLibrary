@@ -1,5 +1,5 @@
 # ArdFSTCPLibrary
-Arduino Flight Simulator TCP Library
+Arduino Flight Simulator TCP Library.
 
 ## Purpose
 This library provides routines to enable a WiFi enables Arduino Uno to connect to the [Flight Simulator Listener](https://github.com/sfawcett123/FlightSimulator).
